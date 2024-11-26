@@ -1,0 +1,300 @@
+LAB 7
+#q1] Question: Create a class Person with attributes name and age, and a method display() that prints the name and age. Then, create a subclass Student that inherits from Person and adds an attribute student_id. Write a method show_details() in Student to print all details, including student_id in python
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Initialize name
+        self.age = age    # Initialize age
+
+    def display(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)  # Call the parent class constructor
+        self.student_id = student_id  # Initialize student_id
+
+    def show_details(self):
+        self.display()  # Call the parent class display method
+        print(f"Student ID: {self.student_id}")
+
+person = Person("Alice", 30)
+student = Student("Bob", 20, "S12345")
+
+print("Person Details:")
+person.display()
+
+print("\nStudent Details:")
+student.show_details()
+
+#q2] Question: Create a class Vehicle with a method info() that prints "This is a vehicle". Inherit Car from Vehicle and add a method car_info() to print "This is a car". Further, create another subclass ElectricCar that inherits from Car and adds a method battery_info() to print "This car has a battery." Demonstrate how multilevel inheritance works by calling all methods from an ElectricCar object. 
+in python
+
+class Vehicle:
+    def info(self):
+        print("This is a vehicle")
+
+class Car(Vehicle):
+    def car_info(self):
+        print("This is a car")
+
+class ElectricCar(Car):
+    def battery_info(self):
+        print("This car has a battery.")
+
+electric_car = ElectricCar()
+
+electric_car.info()         
+electric_car.car_info()     
+electric_car.battery_info() 
+
+#q3] Create two classes Teacher and Author, each with their own description() method to describe the profession. Then, create a subclass TutorAuthor that inherits from both Teacher and Author. Use this subclass to call the description() method from each parent class. Use the super() function to resolve any conflicts if necessary. 
+class Teacher:
+    def description(self):
+        print("I am a teacher. I educate students.")
+
+class Author:
+    def description(self):
+        print("I am an author. I write books.")
+
+class TutorAuthor(Teacher, Author):
+    def description(self):
+        print("I am a tutor and an author.")
+        super().description()  # Calling the method from Teacher class
+        super(Teacher, self).description()  # Calling the method from Author class
+
+tutor_author = TutorAuthor()
+
+tutor_author.description()
+
+#q4] Question: Create a class Animal with a method sound() that prints "Animals make sound". Then create two subclasses Dog and Cat, each with their own version of sound() method that prints "Dog barks" and "Cat meows" respectively. Demonstrate hierarchical inheritance by calling the sound() method from both Dog and Cat objects.
+class Animal:
+    def sound(self):
+        print("Animals make sound")
+
+class Dog(Animal):
+    def sound(self):
+        print("Dog barks")
+
+class Cat(Animal):
+    def sound(self):
+        print("Cat meows")
+
+dog = Dog()
+cat = Cat()
+
+print("Dog says:")
+dog.sound()  # Calls Dog's version of sound()
+
+print("Cat says:")
+cat.sound()  # Calls Cat's version of sound()
+LAB 8
+#q1] Implement the bubble sort algo using classes and methods
+class BubbleSort:
+    def __init__(self, data):
+        self.data = data  # Initialize the list of data to be sorted
+
+    def sort(self):
+        n = len(self.data)
+        for i in range(n):
+            swapped = False
+            for j in range(0, n - i - 1):
+                if self.data[j] > self.data[j + 1]:
+                    self.data[j], self.data[j + 1] = self.data[j + 1], self.data[j]
+                    swapped = True
+            if not swapped:
+                break
+
+    def display(self):
+        print("Sorted list:", self.data)
+
+
+if __name__ == "__main__":
+    data = [64, 34, 25, 12, 22, 11, 90]
+    sorter = BubbleSort(data)
+
+    print("Original list:", sorter.data)
+
+    sorter.sort()
+
+    sorter.display()
+
+
+#q2]Implement the insertion sort using Python
+
+
+class InsertionSort:
+    def __init__(self, data):
+        self.data = data  # Initialize the list of data to be sorted
+
+    def sort(self):
+        for i in range(1, len(self.data)):  # Start from the second element
+            key = self.data[i]  # The element to be inserted
+            j = i - 1  # Start comparing with the previous element
+
+            while j >= 0 and self.data[j] > key:
+                self.data[j + 1] = self.data[j]
+                j -= 1
+            
+            self.data[j + 1] = key
+
+    def display(self):
+        print("Sorted list:", self.data)
+
+
+if __name__ == "__main__":
+    data = [64, 34, 25, 12, 22, 11, 90]
+    sorter = InsertionSort(data)
+
+    print("Original list:", sorter.data)
+
+    sorter.sort()
+
+    sorter.display()
+
+
+#q3]Implement the selection sort using Python
+
+class SelectionSort:
+    def __init__(self, data):
+        self.data = data  # Initialize the list of data to be sorted
+
+    def sort(self):
+        n = len(self.data)
+        for i in range(n):
+            min_index = i
+            for j in range(i + 1, n):
+                if self.data[j] < self.data[min_index]:
+                    min_index = j
+
+            if min_index != i:
+                self.data[i], self.data[min_index] = self.data[min_index], self.data[i]
+
+    def display(self):
+        print("Sorted list:", self.data)
+
+
+if __name__ == "__main__":
+    data = [64, 34, 25, 12, 22, 11, 90]
+    sorter = SelectionSort(data)
+
+    print("Original list:", sorter.data)
+
+    sorter.sort()
+
+    sorter.display()
+
+#q4] Implement the merge sort in python
+
+class MergeSort:
+    def __init__(self, data):
+        self.data = data  # Initialize the list of data to be sorted
+
+    def sort(self):
+        self.data = self.merge_sort(self.data)  # Call the merge_sort function to sort the list
+
+    def merge_sort(self, arr):
+        if len(arr) <= 1:
+            return arr  # Base case: A list of 0 or 1 element is already sorted
+        
+        mid = len(arr) // 2
+        left_half = arr[:mid]
+        right_half = arr[mid:]
+        
+        left_half = self.merge_sort(left_half)
+        right_half = self.merge_sort(right_half)
+        
+        return self.merge(left_half, right_half)
+
+    def merge(self, left, right):
+        sorted_list = []
+        i = j = 0
+        
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                sorted_list.append(left[i])
+                i += 1
+            else:
+                sorted_list.append(right[j])
+                j += 1
+        
+        sorted_list.extend(left[i:])
+        sorted_list.extend(right[j:])
+        
+        return sorted_list
+
+    def display(self):
+        print("Sorted list:", self.data)
+
+
+if __name__ == "__main__":
+    data = [64, 34, 25, 12, 22, 11, 90]
+    sorter = MergeSort(data)
+
+    print("Original list:", sorter.data)
+
+    sorter.sort()
+
+    sorter.display()
+
+#q5]Implement the linear search algorithm using python
+
+class LinearSearch:
+    def __init__(self, data):
+        self.data = data  # Initialize the list of data
+
+    def search(self, target):
+        for index, value in enumerate(self.data):  
+            if value == target:  
+                return index  
+        return -1 
+
+    def display_result(self, target):
+        index = self.search(target)
+        if index != -1:
+            print(f"Element {target} found at index {index}.")
+        else:
+            print(f"Element {target} not found in the list.")
+
+if __name__ == "__main__":
+    data = [64, 34, 25, 12, 22, 11, 90]
+    searcher = LinearSearch(data)
+
+    target = 22
+    searcher.display_result(target)  
+
+    target = 100
+    searcher.display_result(target)  
+
+#q5] Implement the binary search using Python
+
+class BinarySearch:
+    def __init__(self, data):
+        self.data = data  # Initialize the list of sorted data
+
+    def search(self, target):
+        low = 0
+        high = len(self.data) - 1
+
+        while low <= high:
+            mid = (low + high) // 2  # Find the middle index
+            if self.data[mid] == target:  # Target found
+                return mid
+            elif self.data[mid] < target:  # Target is in the right half
+                low = mid + 1
+            else:  # Target is in the left half
+                high = mid - 1
+
+        return -1  # Return -1 if the target is not found
+
+    def display_result(self, target):
+        index = self.search(target)
+        if index != -1:
+            print(f"Element {target} found at index {index}.")
+        else:
+            print(f"Element {target} not found in the list.")
+
+if __name__ == "__main__":
+    # Create an object of BinarySearch with a sorted list
+    data = [11, 12, 22, 25, 34, 64, 90]
+    searcher = BinarySearch(data)
