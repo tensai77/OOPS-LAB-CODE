@@ -1,0 +1,196 @@
+LAB 3
+#q1] wap to check if a given number is a disaium number
+def is_disarium_number(n):
+    # Convert the number to a string to easily access digits
+    num_str = str(n)
+    length = len(num_str)
+    
+    sum_of_powers = sum(int(digit) ** (index + 1) for index, digit in enumerate(num_str))
+    
+    return sum_of_powers == n
+
+num = int(input("Enter a number to check if it's a Disarium number: "))
+
+if is_disarium_number(num):
+    print(f"{num} is a Disarium number.")
+else:
+    print(f"{num} is not a Disarium number.")
+
+#q2] check if a number is a harshad number
+
+def is_harshad_number(n):
+    # Calculate the sum of digits of the number
+    sum_of_digits = sum(int(digit) for digit in str(n))
+    
+    return n % sum_of_digits == 0
+
+num = int(input("Enter a number to check if it's a Harshad number: "))
+
+if is_harshad_number(num):
+    print(f"{num} is a Harshad number.")
+else:
+    print(f"{num} is not a Harshad number.")
+
+#q3] wap to compute value of x^n
+def power(x, n):
+    return x ** n
+
+x = float(input("Enter the base number (x): "))
+n = int(input("Enter the exponent (n): "))
+
+result = power(x, n)
+print(f"The value of {x}^{n} is {result}.")
+
+#q4]# Function to compute the sum of digits of a number
+def sum_of_digits(n):
+    # Initialize the sum to 0
+    total_sum = 0
+    
+    while n > 0:
+        total_sum += n % 10  # Add the last digit to the sum
+        n = n // 10  # Remove the last digit by integer division
+    
+    return total_sum
+
+num = int(input("Enter a number to compute the sum of its digits: "))
+
+result = sum_of_digits(num)
+print(f"The sum of digits in {num} is {result}.")
+
+LAB 4
+#q1]
+#a]Write a program to print the following pattern:-
+Pattern #1: Simple Number Triangle Pattern
+Pattern:
+1  
+2 2  
+3 3 3  
+4 4 4 4  
+5 5 5 5 5
+
+def print_number_triangle(rows):
+    for i in range(1, rows + 1):
+        # Print the number 'i' repeated 'i' times
+        print(" ".join([str(i)] * i))
+
+rows = 5
+
+print_number_triangle(rows)
+
+#b]Pattern #2: Inverted Pyramid of Numbers
+Pattern:
+1 1 1 1 1 
+ 2 2 2 2 
+  3 3 3 
+   4 4 
+    5
+def print_inverted_pyramid(rows):
+    for i in range(1, rows + 1):
+        # Print leading spaces
+        print(" " * (i - 1), end="")
+        print(" ".join([str(i)] * (rows - i + 1)))
+
+rows = 5
+
+print_inverted_pyramid(rows)
+
+c] Pattern #4: Inverted Pyramid of Descending Numbers
+Pattern:
+5 5 5 5 5 
+  4 4 4 4 
+    3 3 3 
+      2 2 
+       1
+def print_inverted_pyramid_descending(rows):
+    for i in range(rows, 0, -1):
+        print(" " * (rows - i), end="")
+        # Print the number 'i' repeated 'i' times
+        print(" ".join([str(i)] * i))
+
+rows = 5
+
+print_inverted_pyramid_descending(rows)
+
+d]Pattern #5: Inverted Pyramid of the Same Digit
+Pattern:
+5 5 5 5 5 
+  5 5 5 5 
+    5 5 5 
+     5 5 
+      5
+def print_inverted_pyramid_same_digit(rows, digit):
+    for i in range(rows, 0, -1):
+        # Print leading spaces
+        print(" " * (rows - i), end="")
+        # Print the same digit repeated 'i' times
+        print(" ".join([str(digit)] * i))
+
+rows = 5
+digit = 5
+
+print_inverted_pyramid_same_digit(rows, digit)
+
+#Q2] write a program to:
+
+#a]  separate the following string into comma (,) separated values. X= “ India.is.my.country”
+
+X = "India.is.my.country"
+
+split_values = X.split(".")
+
+comma_separated_values = ",".join(split_values)
+
+print(comma_separated_values)
+
+#b]To remove a given character from a string. Y=”M.A.N.I.P.A.L” 
+Y = "M.A.N.I.P.A.L"
+
+char_to_remove = "."
+
+modified_string = Y.replace(char_to_remove, "")
+
+print("Original String:", Y)
+print("Modified String:", modified_string)
+
+#c] Write a program to sort strings alphabetically in python.
+strings = ["Banana", "Apple", "Orange", "Mango", "Pineapple"]
+
+sorted_strings = sorted(strings)
+
+print("Sorted list of strings:")
+for string in sorted_strings:
+    print(string)
+
+#d] Take an input from a user as a string then, reverse it.
+user_input = input("Enter a string to reverse: ")
+
+reversed_string = user_input[::-1]
+
+print("Reversed string:", reversed_string)
+
+#e] Write a program to check if a string contains only digits.
+user_input = input("Enter a string to check if it contains only digits: ")
+
+if user_input.isdigit():
+    print("The string contains only digits.")
+else:
+    print("The string does not contain only digits.")
+
+
+#f] Write a program to find the number of vowels in the string.
+
+
+def count_vowels(string):
+    vowels = "aeiouAEIOU"  # Vowels in both lowercase and uppercase
+    count = 0  # Variable to store the count of vowels
+    
+    for char in string:
+        if char in vowels:
+            count += 1  # Increment the count if the character is a vowel
+    
+    return count
+
+user_input = input("Enter a string to count the number of vowels: ")
+
+vowel_count = count_vowels(user_input)
+print("Number of vowels in the string:", vowel_count)
