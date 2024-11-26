@@ -1,0 +1,189 @@
+LAB 1 AND LAB 2
+
+# Q1} write a program to check if number is even or odd:
+
+def check_even_odd(number):
+    if number % 2 == 0:
+        return "Even"
+    else:
+        return "Odd"
+num = int(input("Enter a number: "))
+result = check_even_odd(num)
+print(f"The number {num} is {result}.")
+
+
+#Q2} write a program to assign grade to student based on present:
+def assign_grade(attendance_percentage):
+    if attendance_percentage >= 90:
+        return "Grade A"
+    elif attendance_percentage >= 80:
+        return "Grade B"
+    elif attendance_percentage >= 70:
+        return "Grade C"
+    else:
+        return "Grade D"
+
+total_classes = int(input("Enter total number of classes: "))
+attended_classes = int(input("Enter number of classes attended: "))
+
+
+attendance_percentage = (attended_classes / total_classes) * 100
+
+print(f"Attendance Percentage: {attendance_percentage:.2f}%")
+grade = assign_grade(attendance_percentage)
+print(f"The assigned grade is: {grade}")
+
+
+#Q3] write program to find area of circle:
+import math  # To access the value of pi
+
+def calculate_area_of_circle(radius):
+    area = math.pi * (radius ** 2)  # Area formula
+    return area
+
+radius = float(input("Enter the radius of the circle: "))
+
+area = calculate_area_of_circle(radius)
+print(f"The area of the circle with radius {radius} is: {area:.2f}")
+
+#Q4] write a program to check is given number is arstrong number:
+def is_armstrong_number(number):
+    digits = str(number)
+    
+    num_digits = len(digits)
+    
+    sum_of_powers = sum(int(digit) ** num_digits for digit in digits)
+    
+    return sum_of_powers == number
+
+num = int(input("Enter a number: "))
+
+if is_armstrong_number(num):
+    print(f"{num} is an Armstrong number.")
+else:
+    print(f"{num} is not an Armstrong number.")
+
+#Q5] write a program to check if number is perfect number:
+def is_perfect_number(num):
+    if num <= 1:
+        return False
+
+    divisors_sum = 0
+    for i in range(1, num):
+        if num % i == 0:
+            divisors_sum += i
+    
+    return divisors_sum == num
+
+num = int(input("Enter a number: "))
+
+if is_perfect_number(num)
+
+#Q6] write a program to reverse a number:
+def reverse_number(num):
+    reversed_num = 0
+    while num > 0:
+        last_digit = num % 10
+        reversed_num = reversed_num * 10 + last_digit
+        num = num // 10
+    return reversed_num
+num = int(input("Enter a number: "))
+reversed_num = reverse_number(num)
+print(f"The reversed number is: {reversed_num}")
+
+#Q7]write a program for a console based calculator:
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    if y == 0:
+        return "Error! Division by zero."
+    else:
+        return x / y
+
+def calculator():
+    while True:
+        print("\nSelect operation:")
+        print("1. Add")
+        print("2. Subtract")
+        print("3. Multiply")
+        print("4. Divide")
+        print("5. Exit")
+        
+        choice = input("Enter choice (1/2/3/4/5): ")
+
+        if choice == '5':
+            print("Exiting calculator.")
+            break
+        
+        if choice not in ['1', '2', '3', '4']:
+            print("Invalid input. Please try again.")
+            continue
+        
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+        except ValueError:
+            print("Invalid number input. Please enter numeric values.")
+            continue
+        
+        if choice == '1':
+            print(f"{num1} + {num2} = {add(num1, num2)}")
+        elif choice == '2':
+            print(f"{num1} - {num2} = {subtract(num1, num2)}")
+        elif choice == '3':
+            print(f"{num1} * {num2} = {multiply(num1, num2)}")
+        elif choice == '4':
+            print(f"{num1} / {num2} = {divide(num1, num2)}")
+
+calculator()
+
+
+#Q8] write a code to check whether number is a palindrome or not:
+def is_palindrome(num):
+    num_str = str(num)
+    
+    return num_str == num_str[::-1]
+
+num = int(input("Enter a number: "))
+
+if is_palindrome(num):
+    print(f"{num} is a palindrome.")
+else:
+    print(f"{num} is not a palindrome.")
+
+#Q9} write a number to check whether number is prime or not:
+def is_prime(num):
+    if num <= 1:
+        return False
+    
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    
+    return True
+
+num = int(input("Enter a number: "))
+if is_prime(num):
+    print(f"{num} is a prime number.")
+else:
+    print(f"{num} is not a prime number.")
+
+#Q10] write a program to generate fibonacci series 
+def fibonacci(n):
+    fib_series = []
+    
+    # First two terms are always 0 and 1
+    a, b = 0, 1
+    
+    for _ in range(n):
+        fib_series.append(a)
+        a, b = b, a + b  # Update values for the next term
+    
+    return fib_series
